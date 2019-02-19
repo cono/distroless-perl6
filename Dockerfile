@@ -1,9 +1,10 @@
 FROM debian
 
-ARG SOURCE_BRANCH=master
+ARG RAKUDO_VERSION=master
+
 RUN apt-get update && apt-get dist-upgrade -qq && apt-get install -qq build-essential git
 
-RUN git clone -b ${SOURCE_BRANCH} https://github.com/rakudo/rakudo.git
+RUN git clone -b ${RAKUDO_VERSION} https://github.com/rakudo/rakudo.git
 RUN mkdir -p /perl6
 RUN cd /rakudo && perl Configure.pl --gen-moar --backends=moar --prefix=/perl6 --make-install
 
